@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Gig Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f5ff;
+            --neon-pink: #ff00f5;
+            --neon-purple: #9d00ff;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --glass-bg: rgba(10, 10, 26, 0.7);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-lighter: rgba(255, 255, 255, 0.7);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Futuristic background elements */
+        .bg-circle {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--neon-blue);
+            top: -100px;
+            left: -100px;
+            animation: float 12s ease-in-out infinite;
+        }
+        
+        .circle-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--neon-pink);
+            bottom: -200px;
+            right: -100px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+        
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--neon-purple);
+            top: 50%;
+            left: 80%;
+            animation: float 8s ease-in-out infinite 2s;
+        }
+        
+        /* Main container */
+        .signup-container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                        inset 0 0 20px rgba(157, 0, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .signup-container:hover {
+            transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+                        inset 0 0 30px rgba(157, 0, 255, 0.2);
+        }
+        
+        /* Header with animated gradient */
+        .form-header {
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                            rgba(0, 245, 255, 0.1) 0%, 
+                            rgba(157, 0, 255, 0.2) 50%, 
+                            rgba(255, 0, 245, 0.1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                            transparent, 
+                            rgba(255, 255, 255, 0.05), 
+                            transparent);
+            animation: shine 3s infinite linear;
+            transform: translateX(-100%);
+        }
+        
+        .form-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .form-header p {
+            font-size: 1.1rem;
+            color: var(--text-lighter);
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        /* Form body */
+        .form-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: rgba(5, 5, 16, 0.7);
+            color: white;
+            border-left: 3px solid var(--neon-purple);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+            font-style: italic;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-left: 3px solid var(--neon-blue);
+            box-shadow: 0 5px 20px rgba(0, 245, 255, 0.2),
+                        inset 0 0 10px rgba(0, 245, 255, 0.1);
+            transform: translateY(-3px);
+            background: rgba(10, 10, 26, 0.9);
+        }
+        
+        .form-group input:focus + label,
+        .form-group select:focus + label {
+            color: var(--neon-pink);
+            transform: translateY(-5px);
+            text-shadow: 0 0 10px rgba(255, 0, 245, 0.5);
+        }
+        
+        /* Custom select arrow */
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f5ff'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+        
+        /* Error styling */
+        .error {
+            color: #ff3860;
+            font-size: 13px;
+            margin-top: 8px;
+            display: block;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+        
+        .error.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Submit button with holographic effect */
+        .submit-btn {
+            position: relative;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 5px 15px rgba(157, 0, 255, 0.4),
+                        inset 0 0 10px rgba(255, 255, 255, 0.2);
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(157, 0, 255, 0.6),
+                        inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                            transparent, 
+                            rgba(255, 255, 255, 0.2), 
+                            transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Confirmation screen */
+        #confirmation {
+            display: none;
+            text-align: center;
+            padding: 40px 30px;
+            animation: fadeIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+            opacity: 0;
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .success-icon .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--neon-blue);
+            animation: circlePulse 2s infinite ease-out;
+            opacity: 0;
+        }
+        
+        .success-icon .circle:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .success-icon .circle:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .success-icon .checkmark {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .success-icon .checkmark::before,
+        .success-icon .checkmark::after {
+            content: '';
+            position: absolute;
+            background-color: var(--neon-blue);
+            border-radius: 3px;
+        }
+        
+        .success-icon .checkmark::before {
+            width: 25px;
+            height: 5px;
+            transform: rotate(45deg);
+            left: 27px;
+            top: 52px;
+            animation: drawCheck 0.8s ease 0.5s forwards;
+            opacity: 0;
+        }
+        
+        .success-icon .checkmark::after {
+            width: 50px;
+            height: 5px;
+            transform: rotate(-45deg);
+            left: 37px;
+            top: 52px;
+            animation: drawCheck 0.8s ease 0.8s forwards;
+            opacity: 0;
+        }
+        
+        #confirmation h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        #confirmation p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--text-lighter);
+            line-height: 1.6;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-20px) translateX(20px); }
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes circlePulse {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        @keyframes drawCheck {
+            0% { width: 0; opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        /* Input animations */
+        .form-group input, .form-group select {
+            animation: floatUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .form-group:nth-child(1) input { animation-delay: 0.1s; }
+        .form-group:nth-child(2) input { animation-delay: 0.2s; }
+        .form-group:nth-child(3) select { animation-delay: 0.3s; }
+        .form-group:nth-child(4) input { animation-delay: 0.4s; }
+        
+        @keyframes floatUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-header p {
+                font-size: 1rem;
+                max-width: 90%;
+            }
+            
+            .form-body {
+                padding: 25px 20px;
+            }
+            
+            .form-group input,
+            .form-group select {
+                padding: 15px;
+            }
+            
+            .submit-btn {
+                padding: 16px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-header {
+                padding: 30px 20px;
+            }
+            
+            .form-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .success-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            #confirmation h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background elements -->
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
+    
+    <!-- Main form container -->
+    <div class="signup-container animate__animated animate__fadeIn">
+        <div class="form-header">
+            <h1>Join The Gig Revolution</h1>
+            <p>Unlock endless opportunities with our exclusive freelance platform</p>
+        </div>
+        
+        <div class="form-body">
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="name">FULL NAME</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    <span id="nameError" class="error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    <span id="emailError" class="error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="skill">PRIMARY SKILL</label>
+                    <select id="skill" name="skill" required>
+                        <option value="">Select your expertise</option>
+                        <option value="design">UI/UX Design</option>
+                        <option value="development">Web Development</option>
+                        <option value="mobile">Mobile Development</option>
+                        <option value="writing">Content Writing</option>
+                        <option value="marketing">Digital Marketing</option>
+                        <option value="video">Video Production</option>
+                        <option value="audio">Audio Engineering</option>
+                        <option value="consulting">Business Consulting</option>
+                        <option value="other">Other Specialization</option>
+                    </select>
+                    <span id="skillError" class="error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="portfolio">PORTFOLIO LINK</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://yourbestwork.com">
+                    <span id="portfolioError" class="error"></span>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    LAUNCH MY GIG CAREER
+                </button>
+            </form>
+            
+            <div id="confirmation">
+                <div class="success-icon">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="checkmark"></div>
+                </div>
+                <h2>WELCOME TO THE FUTURE OF WORK</h2>
+                <p>Your application has been successfully submitted.</p>
+                <p>We're curating the best opportunities for your skillset.</p>
+                <p>Check your email for next steps within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('signupForm');
+            const confirmation = document.getElementById('confirmation');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset errors
+                document.querySelectorAll('.error').forEach(el => {
+                    el.classList.remove('show');
+                });
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const skill = document.getElementById('skill').value;
+                const portfolio = document.getElementById('portfolio').value.trim();
+                
+                let isValid = true;
+                
+                // Name validation
+                if (name === '') {
+                    showError('nameError', 'Name is required');
+                    isValid = false;
+                } else if (name.length < 2) {
+                    showError('nameError', 'Name must be at least 2 characters');
+                    isValid = false;
+                }
+                
+                // Email validation
+                if (email === '') {
+                    showError('emailError', 'Email is required');
+                    isValid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showError('emailError', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Skill validation
+                if (skill === '') {
+                    showError('skillError', 'Please select your primary skill');
+                    isValid = false;
+                }
+                
+                // Portfolio validation (optional but must be valid URL if provided)
+                if (portfolio && !/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(portfolio)) {
+                    showError('portfolioError', 'Please enter a valid URL (include http:// or https://)');
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Animate button on success
+                    const button = form.querySelector('.submit-btn');
+                    button.innerHTML = 'PROCESSING...';
+                    button.style.background = 'linear-gradient(135deg, var(--neon-blue), var(--neon-purple))';
+                    
+                    // Create confetti effect
+                    createConfetti();
+                    
+                    // In a real application, you would send the data to a server here
+                    setTimeout(() => {
+                        form.style.display = 'none';
+                        confirmation.style.display = 'block';
+                        
+                        // Create more confetti on success display
+                        setTimeout(createConfetti, 500);
+                        setTimeout(createConfetti, 1000);
+                    }, 2000);
+                }
+            });
+            
+            function showError(elementId, message) {
+                const element = document.getElementById(elementId);
+                element.textContent = message;
+                element.classList.add('show');
+                
+                // Add shake animation to the input field
+                const input = document.getElementById(elementId.replace('Error', ''));
+                input.style.borderLeftColor = '#ff3860';
+                input.classList.add('animate__animated', 'animate__headShake');
+                
+                // Remove animation class after it completes
+                setTimeout(() => {
+                    input.classList.remove('animate__headShake');
+                }, 1000);
+            }
+            
+            function createConfetti() {
+                const colors = ['#00f5ff', '#ff00f5', '#9d00ff', '#ffffff'];
+                
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                    confetti.style.width = Math.random() * 8 + 5 + 'px';
+                    confetti.style.height = Math.random() * 8 + 5 + 'px';
+                    confetti.style.opacity = Math.random() + 0.5;
+                    document.body.appendChild(confetti);
+                    
+                    const animationDuration = Math.random() * 3 + 2;
+                    
+                    confetti.animate([
+                        { top: '-10px', left: Math.random() * 100 + 'vw', opacity: 0 },
+                        { top: Math.random() * 100 + 'vh', left: Math.random() * 100 + 'vw', opacity: 0.8 },
+                        { top: '100vh', left: Math.random() * 100 + 'vw', opacity: 0 }
+                    ], {
+                        duration: animationDuration * 1000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                    });
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
